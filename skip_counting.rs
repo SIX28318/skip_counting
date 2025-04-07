@@ -2,18 +2,26 @@
 // written in Rust.
 
 // Example:
-// 1 × 1 = 1
-// 1 × 2 = 2
+//  1 ×  1 =   1
+//  1 ×  2 =   2
 // ...
 // 20 × 20 = 400
 
 fn main() {
-    // Iterate over a range, here 1 through 20.
-    for n in 1..21 {
-        println!(""); // Dirty line break. Prettify this later...
-        let digit = n;
-        for (_index, value) in (1..21).enumerate() {
-            println!("{} × {} = {} ", digit, value, digit*value);
+    // Use a constant for the range limit to make it easier to adjust
+    const LIMIT: i32 = 20;
+
+    // Iterate over the outer loop (1 to LIMIT)
+    for digit in 1..=LIMIT {
+        // Print a separator line before each table, but not before the first one
+        if digit > 1 {
+            println!();
+        }
+
+        // Inner loop for multiplication
+        for value in 1..=LIMIT {
+            // Use string formatting for cleaner output
+            println!("{:2} × {:2} = {:3}", digit, value, digit * value);
         }
     }
 }
